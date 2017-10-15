@@ -22,8 +22,11 @@ class SwivelComponent {
         $swivelOptions = (array)config('swivel');
         $swivelOptions['BucketIndex'] = !empty($swivelOptions['BucketIndex'])
             ? $swivelOptions['BucketIndex']
-            : $request->header('Bucket', 1);
-        $swivelLoader = config('swivel.LoaderAlias');
+            : $request->header('Bucket', rand(1, 9));
+        $swivelLoader = $swivelOptions['LoaderAlias'];
+        if(empty($swivelLoader)){
+            throw new \InvalidArgumentException('Loader alias expected');
+        }
         $this->loader = new $swivelLoader($swivelOptions);
     }
 
