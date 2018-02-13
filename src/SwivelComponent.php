@@ -4,30 +4,50 @@ namespace Webkod3r\LaravelSwivel;
 
 use Illuminate\Http\Request as IlluminateRequest;
 
+/**
+ * @package Webkod3r\LaravelSwivel
+ * @author Pablo Molina <web.kod3r@gmail.com>
+ */
 class SwivelComponent {
+
     /**
      * @var SwivelLoader
      */
     protected $loader;
 
-    /**
-     * Request object.
-     *
-     * @var IlluminateRequest
-     */
-    public $request;
-
     public function __construct(IlluminateRequest $request) {
-        $this->request = $request;
-        $swivelOptions = (array)config('swivel');
-        $swivelOptions['BucketIndex'] = !empty($swivelOptions['BucketIndex'])
-            ? $swivelOptions['BucketIndex']
-            : $request->header('Bucket', rand(1, 9));
-        $swivelLoader = $swivelOptions['LoaderAlias'];
-        if(empty($swivelLoader)){
+        $config = (array)config('laravel-swivel');
+
+        $swivelOptions = [
+            'LoaderAlias' => $config['loader_class'],
+            'ModelAlias' => $config['model_class'],
+            'Logger' => app($config['logger_class']),
+            'Metrics' => null,
+        ];
+
+        // always search for the header and fallback to default value configured
+        $swivelOptions['BucketIndex'] = !empty($request->header('Bucket'))
+            ? (int)$request->header('Bucket')
+            : (int)$config['bucket_index'];
+
+        if (empty($swivelOptions['LoaderAlias'])) {
             throw new \InvalidArgumentException('Loader alias expected');
         }
-        $this->loader = new $swivelLoader($swivelOptions);
+
+        if (!empty($config['cookie_enabled'])) {
+            $cookie = [
+                'enabled' => true,
+                'name' => $config['cookie_name'],
+                'expire' => (int)$config['cookie_expire'],
+                'path' => $config['cookie_path'],
+                'domain' => $config['cookie_domain'],
+                'secure' => (boolean)$config['cookie_secure'],
+                'httpOnly' => (boolean)$config['cookie_http_only'],
+            ];
+            $swivelOptions['Cookie'] = $cookie;
+        }
+
+        $this->loader = new $swivelOptions['LoaderAlias']($swivelOptions);
     }
 
     /**
@@ -36,8 +56,7 @@ class SwivelComponent {
      * @param string $slug
      * @return \Zumba\Swivel\Builder
      */
-    public function forFeature($slug)
-    {
+    public function forFeature($slug) {
         return $this->loader->getManager()->forFeature($slug);
     }
 
@@ -49,8 +68,7 @@ class SwivelComponent {
      * @param mixed $b
      * @return mixed
      */
-    public function invoke($slug, $a, $b = null)
-    {
+    public function invoke($slug, $a, $b = null) {
         return $this->loader->getManager()->invoke($slug, $a, $b);
     }
 
@@ -61,10 +79,9 @@ class SwivelComponent {
      * @param $slug
      * @param $a
      * @param null $b
-     *
      * @return mixed
      */
-    public function returnValue($slug, $a, $b=null) {
+    public function returnValue($slug, $a, $b = null) {
         return $this->loader->getManager()->returnValue($slug, $a, $b);
     }
 }
