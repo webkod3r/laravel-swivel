@@ -4,6 +4,10 @@ namespace Webkod3r\LaravelSwivel;
 
 use Webkod3r\LaravelSwivel\Entity\SwivelFeature;
 
+/**
+ * @package Webkod3r\LaravelSwivel
+ * @author Pablo Molina <web.kod3r@gmail.com>
+ */
 class SwivelLoader {
 
     /**
