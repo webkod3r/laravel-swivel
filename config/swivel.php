@@ -67,4 +67,13 @@ return [
     'cookie_domain' => env('SWIVEL_COOKIE_DOMAIN', env('HTTP_HOST')),
     'cookie_secure' => env('SWIVEL_COOKIE_SECURE', true),
     'cookie_http_only' => env('SWIVEL_COOKIE_HTTP_ONLY', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cache definition
+    |--------------------------------------------------------------------------
+    | Defines the cache configuration for key and duration
+    */
+    'cache_key' => 'swivel_features_cache_key',
+    'cache_duration' => 300, // 5 min
 ];
