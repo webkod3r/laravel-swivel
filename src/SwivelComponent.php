@@ -16,7 +16,7 @@ class SwivelComponent {
     protected $loader;
 
     public function __construct(IlluminateRequest $request) {
-        $config = (array)config('laravel-swivel');
+        $config = (array)config('swivel');
 
         $swivelOptions = [
             'LoaderAlias' => $config['loader_class'],

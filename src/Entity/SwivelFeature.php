@@ -2,14 +2,13 @@
 
 namespace Webkod3r\LaravelSwivel\Entity;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
 /**
  * Class SwivelFeature
- * @package Webkod3r\LaravelSwivel\Entity
  *
+ * @package Webkod3r\LaravelSwivel\Entity
  * @property integer $id
  * @property string $slug
  * @property string $buckets
@@ -19,6 +18,7 @@ use Illuminate\Support\Facades\Cache;
 class SwivelFeature extends Model implements SwivelModelInterface {
 
     protected $table = 'swivel_features';
+
     const TABLE_NAME = 'swivel_features';
     const SWIVEL_MAP_CACHE_KEY = 'swivel_features_map';
     const DELIMITER = ',';
@@ -28,25 +28,29 @@ class SwivelFeature extends Model implements SwivelModelInterface {
     /**
      * Return an array of map data in the format that Swivel expects
      *
-     * @return array
+     * @return array Array containing the mapping between the features and buckets
+     * <pre>
+     * return [
+     *  'TopupProviders' => [1,2,3,4,5,6,7,8,9,10],
+     *  'TopupProviders.Multiple' => [1,2,3,4,5],
+     * ]
+     * </pre>
      */
     public function getMapData() {
-//        return [
-//            'TopupProviders' => [1,2,3,4,5],
-//            'TopupProviders.Multiple' => [1,2,3,4,5],
-//        ];
+        // load configuration settings
+        $config = (array)config('swivel');
 
-        if(Cache::has(static::SWIVEL_MAP_CACHE_KEY)){
-            return Cache::get(static::SWIVEL_MAP_CACHE_KEY);
+        if (Cache::has($config['cache_key'])) {
+            return Cache::get($config['cache_key']);
         } else {
             $features = self::all();
-            if($features->count() === 0){
+            if ($features->count() === 0) {
                 $map = [];
-            }else{
+            } else {
                 $map = call_user_func_array('array_merge', array_map([$this, 'formatRow'], $features->toArray()));
             }
 
-            Cache::add(static::SWIVEL_MAP_CACHE_KEY, $map, Carbon::now()->addDay());
+            Cache::add($config['cache_key'], $map, $config['cache_duration']);
             return $map;
         }
     }
@@ -57,10 +61,9 @@ class SwivelFeature extends Model implements SwivelModelInterface {
      * @param array $feature
      * @return array
      */
-    protected function formatRow(array $feature)
-    {
+    protected function formatRow(array $feature) {
         if (!empty($feature['id'])) {
-            return [ $feature['slug'] => explode(static::DELIMITER, $feature['buckets']) ];
+            return [$feature['slug'] => explode(static::DELIMITER, $feature['buckets'])];
         }
         return [];
     }
