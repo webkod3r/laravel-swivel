@@ -11,7 +11,7 @@ use Illuminate\Http\Request as IlluminateRequest;
 class SwivelComponent {
 
     /**
-     * @var SwivelLoader
+     * @var \Webkod3r\LaravelSwivel\SwivelLoader
      */
     protected $loader;
 
@@ -51,6 +51,15 @@ class SwivelComponent {
     }
 
     /**
+     * Get the loader instance to access it easily
+     *
+     * @return \Webkod3r\LaravelSwivel\SwivelLoader
+     */
+    public function getLoader() {
+        return $this->loader;
+    }
+
+    /**
      * Create a new Builder instance
      *
      * @param string $slug
@@ -76,9 +85,9 @@ class SwivelComponent {
      * Shorthand syntactic sugar for invoking a simple feature behavior using Builder::addValue.
      * Useful for ternary style code.
      *
-     * @param $slug
-     * @param $a
-     * @param null $b
+     * @param string $slug
+     * @param mixed $a
+     * @param null|mixed $b
      * @return mixed
      */
     public function returnValue($slug, $a, $b = null) {
