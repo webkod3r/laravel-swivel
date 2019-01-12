@@ -21,7 +21,7 @@ class SwivelComponent {
         $swivelOptions = [
             'LoaderAlias' => $config['loader_class'],
             'ModelAlias' => $config['model_class'],
-            'Logger' => app($config['logger_class']),
+            'Logger' => !empty($config['logger_class']) ? app($config['logger_class']) : null,
             'Metrics' => null,
         ];
 
