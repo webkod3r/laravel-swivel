@@ -75,5 +75,5 @@ return [
     | Defines the cache configuration for key and duration
     */
     'cache_key' => 'swivel_features_cache_key',
-    'cache_duration' => 300, // 5 min
+    'cache_duration' => 5, // Laravel's Cache class uses the time in minutes
 ];
