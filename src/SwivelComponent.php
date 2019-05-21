@@ -69,7 +69,7 @@ class SwivelComponent
     /**
      * Create a new Builder instance
      *
-     * @param string $slug
+     * @param string $slug The feature domain slug
      * @return \Zumba\Swivel\Builder
      */
     public function forFeature($slug)
@@ -80,9 +80,9 @@ class SwivelComponent
     /**
      * Syntactic sugar for creating simple feature toggles (ternary style)
      *
-     * @param string $slug
-     * @param mixed $a
-     * @param mixed $b
+     * @param string $slug The feature slug to evaluate
+     * @param mixed  $a    Clousure to execute if feature is enabled
+     * @param mixed  $b    Clousure to execute if feature is disabled
      * @return mixed
      */
     public function invoke($slug, $a, $b = null)
@@ -94,9 +94,9 @@ class SwivelComponent
      * Shorthand syntactic sugar for invoking a simple feature behavior using Builder::addValue.
      * Useful for ternary style code.
      *
-     * @param string $slug
-     * @param mixed $a
-     * @param null|mixed $b
+     * @param string     $slug The feature slug to evaluate
+     * @param mixed      $a    Value to return if feature is enabled
+     * @param null|mixed $b    Value to return if feature is disabled
      * @return mixed
      */
     public function returnValue($slug, $a, $b = null)

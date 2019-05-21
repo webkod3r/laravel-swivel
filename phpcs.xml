@@ -76,6 +76,11 @@
         <exclude-pattern>*.php</exclude-pattern>
         <exclude name="Generic.Strings.UnnecessaryStringConcat.Found)"/>
     </rule>
+    <rule ref="PEAR.Commenting.FunctionComment"/>
+    <rule ref="PEAR.Commenting.InlineComment"/>
+    <rule ref="PEAR.WhiteSpace.ObjectOperatorIndent"/>
+    <rule ref="PEAR.WhiteSpace.ScopeIndent"/>
+    <rule ref="Squiz.PHP.CommentedOutCode"/>
 
     <file>src</file>
     <file>tests</file>
