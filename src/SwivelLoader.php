@@ -35,7 +35,7 @@ class SwivelLoader
     /**
      * SwivelLoader only creates the swivel manager whenever you try to use it.
      *
-     * @param array array $options
+     * @param array $options Set of options to build the loader with
      */
     public function __construct(array $options)
     {

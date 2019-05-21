@@ -24,6 +24,11 @@ class LaravelSwivelServiceProvider extends ServiceProvider
      */
     protected $defer = true;
 
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
     public function boot()
     {
         $this->setupConfig($this->app);
@@ -44,7 +49,7 @@ class LaravelSwivelServiceProvider extends ServiceProvider
     /**
      * Setup the config.
      *
-     * @param \Illuminate\Contracts\Container\Container $app
+     * @param \Illuminate\Contracts\Container\Container $app The container
      * @return void
      */
     protected function setupConfig(Container $app)
