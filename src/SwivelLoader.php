@@ -8,7 +8,8 @@ use Webkod3r\LaravelSwivel\Entity\SwivelFeature;
  * @package Webkod3r\LaravelSwivel
  * @author Pablo Molina <web.kod3r@gmail.com>
  */
-class SwivelLoader {
+class SwivelLoader
+{
 
     /**
      * Swivel config
@@ -36,7 +37,8 @@ class SwivelLoader {
      *
      * @param array array $options
      */
-    public function __construct(array $options) {
+    public function __construct(array $options)
+    {
         $this->options = $options;
     }
 
@@ -45,7 +47,8 @@ class SwivelLoader {
      *
      * @return \Zumba\Swivel\Config
      */
-    public function getConfig() {
+    public function getConfig()
+    {
         if (empty($this->config)) {
             $options = $this->options;
             $this->config = new \Zumba\Swivel\Config(
@@ -65,7 +68,8 @@ class SwivelLoader {
      *
      * @return \Zumba\Swivel\Manager
      */
-    public function getManager() {
+    public function getManager()
+    {
         return $this->manager ?: $this->load();
     }
 
@@ -73,9 +77,10 @@ class SwivelLoader {
      * Get the configured swivel model.
      * Falls back to the SwivelFeature model provided by the plugin if the app does not define one.
      *
-     * @return SwivelFeature
+     * @return \Webkod3r\LaravelSwivel\Entity\SwivelFeature
      */
-    protected function getModel() {
+    protected function getModel()
+    {
         return new $this->options['ModelAlias'];
     }
 
@@ -84,7 +89,8 @@ class SwivelLoader {
      *
      * @return \Zumba\Swivel\Manager
      */
-    protected function load() {
+    protected function load()
+    {
         $this->manager = new \Zumba\Swivel\Manager($this->getConfig());
         return $this->manager;
     }
@@ -96,7 +102,8 @@ class SwivelLoader {
      * @return void
      * @throws \InvalidArgumentException if $index is not valid
      */
-    public function setBucketIndex($index) {
+    public function setBucketIndex($index)
+    {
         if (!is_numeric($index) || $index < 1 || $index > 10) {
             throw new \InvalidArgumentException("SwivelLoader: $index is not a valid bucket index.");
         }

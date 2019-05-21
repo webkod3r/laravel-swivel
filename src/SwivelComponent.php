@@ -2,20 +2,26 @@
 
 namespace Webkod3r\LaravelSwivel;
 
-use Illuminate\Http\Request as IlluminateRequest;
+use Illuminate\Http\Request;
 
 /**
  * @package Webkod3r\LaravelSwivel
  * @author Pablo Molina <web.kod3r@gmail.com>
  */
-class SwivelComponent {
+class SwivelComponent
+{
 
     /**
      * @var \Webkod3r\LaravelSwivel\SwivelLoader
      */
     protected $loader;
 
-    public function __construct(IlluminateRequest $request) {
+    /**
+     * SwivelComponent constructor.
+     * @param \Illuminate\Http\Request $request HTTP request to load the header from
+     */
+    public function __construct(Request $request)
+    {
         $config = (array)config('swivel');
 
         $swivelOptions = [
@@ -55,7 +61,8 @@ class SwivelComponent {
      *
      * @return \Webkod3r\LaravelSwivel\SwivelLoader
      */
-    public function getLoader() {
+    public function getLoader()
+    {
         return $this->loader;
     }
 
@@ -65,7 +72,8 @@ class SwivelComponent {
      * @param string $slug
      * @return \Zumba\Swivel\Builder
      */
-    public function forFeature($slug) {
+    public function forFeature($slug)
+    {
         return $this->loader->getManager()->forFeature($slug);
     }
 
@@ -77,7 +85,8 @@ class SwivelComponent {
      * @param mixed $b
      * @return mixed
      */
-    public function invoke($slug, $a, $b = null) {
+    public function invoke($slug, $a, $b = null)
+    {
         return $this->loader->getManager()->invoke($slug, $a, $b);
     }
 
@@ -90,7 +99,8 @@ class SwivelComponent {
      * @param null|mixed $b
      * @return mixed
      */
-    public function returnValue($slug, $a, $b = null) {
+    public function returnValue($slug, $a, $b = null)
+    {
         return $this->loader->getManager()->returnValue($slug, $a, $b);
     }
 }
