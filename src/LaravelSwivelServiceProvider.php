@@ -7,7 +7,8 @@ use \Illuminate\Support\ServiceProvider;
 use \Illuminate\Foundation\Application as LaravelApplication;
 use \Laravel\Lumen\Application as LumenApplication;
 
-class LaravelSwivelServiceProvider extends ServiceProvider {
+class LaravelSwivelServiceProvider extends ServiceProvider
+{
 
     /**
      * The package version.
@@ -23,13 +24,20 @@ class LaravelSwivelServiceProvider extends ServiceProvider {
      */
     protected $defer = true;
 
-    public function boot() {
+    public function boot()
+    {
         $this->setupConfig($this->app);
 
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 
-    private function configPath() {
+    /**
+     * Returns the configuration path for the component
+     *
+     * @return string
+     */
+    private function configPath()
+    {
         return realpath($raw = __DIR__ . '/../config/swivel.php') ?: $raw;
     }
 
@@ -39,7 +47,8 @@ class LaravelSwivelServiceProvider extends ServiceProvider {
      * @param \Illuminate\Contracts\Container\Container $app
      * @return void
      */
-    protected function setupConfig(Container $app) {
+    protected function setupConfig(Container $app)
+    {
         $source = $this->configPath();
 
         if ($app instanceof LaravelApplication && $app->runningInConsole()) {
@@ -54,9 +63,12 @@ class LaravelSwivelServiceProvider extends ServiceProvider {
     }
 
     /**
-     * Publish swivel assets.
+     * Sets swivel configuration
+     *
+     * @return void
      */
-    private function publishAssets() {
+    private function publishAssets()
+    {
         app()->make('config')->set('swivel', app()->getConfigurationPath('swivel'));
         app()->configure('swivel');
     }
@@ -64,7 +76,8 @@ class LaravelSwivelServiceProvider extends ServiceProvider {
     /**
      * @return void
      */
-    public function register() {
+    public function register()
+    {
         $this->registerClass();
     }
 
@@ -73,7 +86,8 @@ class LaravelSwivelServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    private function registerClass() {
+    private function registerClass()
+    {
         $this->app->singleton('Swivel', function (Container $app) {
             $request = app(\Illuminate\Http\Request::class);
             return new SwivelComponent($request);
@@ -87,7 +101,8 @@ class LaravelSwivelServiceProvider extends ServiceProvider {
      *
      * @return array
      */
-    public function provides() {
+    public function provides()
+    {
         return ['Swivel'];
     }
 }
