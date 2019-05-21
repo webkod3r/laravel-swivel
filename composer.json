@@ -19,13 +19,14 @@
     ],
     "require": {
         "php" : "~5.6|~7.0",
-        "illuminate/support": "~5.0",
-        "illuminate/http": "~5.0",
+        "illuminate/support": "^5.0",
+        "illuminate/http": "^5.0",
         "zumba/swivel": "^2.1"
     },
     "require-dev": {
+        "mockery/mockery": "^1.2",
         "phpunit/phpunit": "~5.0",
-        "mockery/mockery": "dev-master"
+        "squizlabs/php_codesniffer": "^3.4"
     },
     "autoload": {
         "psr-4": {
@@ -38,15 +39,23 @@
         }
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "./vendor/bin/phpunit",
+        "post-autoload-dump": [
+            "bash ./extras/setup.sh"
+        ]
     },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Webkod3r\\LaravelSwivel\\LaravelSwivelServiceProvider"
+            ]
         }
     },
     "config": {
         "sort-packages": true
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
