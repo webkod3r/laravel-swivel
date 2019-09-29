@@ -18,9 +18,11 @@
         }
     ],
     "require": {
-        "php" : "~5.6|~7.0",
-        "illuminate/support": "^5.0",
-        "illuminate/http": "^5.0",
+        "php": "~5.6|~7.0",
+        "illuminate/container": "5.4.36",
+        "illuminate/database": "5.4.36",
+        "illuminate/http": "5.4.36",
+        "illuminate/support": "5.4.36",
         "zumba/swivel": "^2.1"
     },
     "require-dev": {
