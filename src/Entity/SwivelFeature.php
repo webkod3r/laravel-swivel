@@ -2,8 +2,10 @@
 
 namespace Webkod3r\LaravelSwivel\Entity;
 
+use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class SwivelFeature
@@ -17,13 +19,32 @@ use Illuminate\Support\Facades\Cache;
  */
 class SwivelFeature extends Model implements SwivelModelInterface {
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'swivel_features';
 
-    const TABLE_NAME = 'swivel_features';
     const SWIVEL_MAP_CACHE_KEY = 'swivel_features_map';
     const DELIMITER = ',';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['slug', 'buckets'];
+
+    /**
+     * Mockable function to access the container
+     *
+     * @return Container
+     */
+    protected function getContainer()
+    {
+        return Container::getInstance();
+    }
 
     /**
      * Return an array of map data in the format that Swivel expects
@@ -38,21 +59,23 @@ class SwivelFeature extends Model implements SwivelModelInterface {
      */
     public function getMapData() {
         // load configuration settings
-        $config = (array)config('swivel');
+        $config = (array)$this->getContainer()->make('config')->get('swivel');
 
-        if (Cache::has($config['cache_key'])) {
-            return Cache::get($config['cache_key']);
-        } else {
+        if (empty($config)) {
+            Log::warning('Swivel config not found.');
+            $config['cache_key'] = '';
+            $config['cache_duration'] = 0;
+        }
+
+        return Cache::remember($config['cache_key'], $config['cache_duration'], function () {
             $features = self::all();
             if ($features->count() === 0) {
-                $map = [];
+                return [];
             } else {
-                $map = call_user_func_array('array_merge', array_map([$this, 'formatRow'], $features->toArray()));
+                return call_user_func_array('array_merge', array_map([$this, 'formatRow'], $features->toArray()));
             }
-
-            Cache::add($config['cache_key'], $map, $config['cache_duration']);
-            return $map;
-        }
+            return $features;
+        });
     }
 
     /**
