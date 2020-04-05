@@ -1,21 +1,26 @@
 <?php
 
-namespace Webkod3r\LaravelSwivel;
+namespace LaravelSwivel;
 
-use Illuminate\Http\Request as IlluminateRequest;
+use Illuminate\Http\Request;
 
 /**
- * @package Webkod3r\LaravelSwivel
+ * @package LaravelSwivel
  * @author Pablo Molina <web.kod3r@gmail.com>
  */
-class SwivelComponent {
-
+class SwivelComponent
+{
     /**
-     * @var \Webkod3r\LaravelSwivel\SwivelLoader
+     * @var \LaravelSwivel\SwivelLoader
      */
     protected $loader;
 
-    public function __construct(IlluminateRequest $request) {
+    /**
+     * SwivelComponent constructor.
+     * @param \Illuminate\Http\Request $request HTTP request to load the header from
+     */
+    public function __construct(Request $request)
+    {
         $config = (array)config('swivel');
 
         $swivelOptions = [
@@ -53,31 +58,34 @@ class SwivelComponent {
     /**
      * Get the loader instance to access it easily
      *
-     * @return \Webkod3r\LaravelSwivel\SwivelLoader
+     * @return \LaravelSwivel\SwivelLoader
      */
-    public function getLoader() {
+    public function getLoader()
+    {
         return $this->loader;
     }
 
     /**
      * Create a new Builder instance
      *
-     * @param string $slug
+     * @param string $slug The feature domain slug
      * @return \Zumba\Swivel\Builder
      */
-    public function forFeature($slug) {
+    public function forFeature($slug)
+    {
         return $this->loader->getManager()->forFeature($slug);
     }
 
     /**
      * Syntactic sugar for creating simple feature toggles (ternary style)
      *
-     * @param string $slug
-     * @param mixed $a
-     * @param mixed $b
+     * @param string $slug The feature slug to evaluate
+     * @param mixed  $a    Clousure to execute if feature is enabled
+     * @param mixed  $b    Clousure to execute if feature is disabled
      * @return mixed
      */
-    public function invoke($slug, $a, $b = null) {
+    public function invoke($slug, $a, $b = null)
+    {
         return $this->loader->getManager()->invoke($slug, $a, $b);
     }
 
@@ -85,12 +93,13 @@ class SwivelComponent {
      * Shorthand syntactic sugar for invoking a simple feature behavior using Builder::addValue.
      * Useful for ternary style code.
      *
-     * @param string $slug
-     * @param mixed $a
-     * @param null|mixed $b
+     * @param string     $slug The feature slug to evaluate
+     * @param mixed      $a    Value to return if feature is enabled
+     * @param null|mixed $b    Value to return if feature is disabled
      * @return mixed
      */
-    public function returnValue($slug, $a, $b = null) {
+    public function returnValue($slug, $a, $b = null)
+    {
         return $this->loader->getManager()->returnValue($slug, $a, $b);
     }
 }

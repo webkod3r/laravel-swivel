@@ -1,20 +1,20 @@
 <?php
 
-namespace Webkod3r\LaravelSwivel;
+namespace LaravelSwivel;
 
 use \Illuminate\Contracts\Container\Container;
 use \Illuminate\Support\ServiceProvider;
 use \Illuminate\Foundation\Application as LaravelApplication;
 use \Laravel\Lumen\Application as LumenApplication;
 
-class LaravelSwivelServiceProvider extends ServiceProvider {
-
+class LaravelSwivelServiceProvider extends ServiceProvider
+{
     /**
      * The package version.
      *
      * @var string
      */
-    const VERSION = '0.2.2';
+    const VERSION = '1.0.1';
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -23,23 +23,51 @@ class LaravelSwivelServiceProvider extends ServiceProvider {
      */
     protected $defer = true;
 
-    public function boot() {
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
         $this->setupConfig($this->app);
 
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 
-    private function configPath() {
+    /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->singleton('swivel', function (Container $app) {
+            $request = $app->make(\Illuminate\Http\Request::class);
+            return new SwivelComponent($request);
+        });
+
+        $this->app->alias('swivel', SwivelComponent::class);
+    }
+
+    /**
+     * Returns the configuration path for the component
+     *
+     * @return string
+     */
+    private function configPath()
+    {
         return realpath($raw = __DIR__ . '/../config/swivel.php') ?: $raw;
     }
 
     /**
      * Setup the config.
      *
-     * @param \Illuminate\Contracts\Container\Container $app
+     * @param \Illuminate\Contracts\Container\Container $app The container
      * @return void
      */
-    protected function setupConfig(Container $app) {
+    protected function setupConfig(Container $app)
+    {
         $source = $this->configPath();
 
         if ($app instanceof LaravelApplication && $app->runningInConsole()) {
@@ -48,38 +76,7 @@ class LaravelSwivelServiceProvider extends ServiceProvider {
             $app->configure('swivel');
         }
 
-        // merge specific configurations
-        $source = $app->getConfigurationPath('swivel') ?: $source;
         $this->mergeConfigFrom($source, 'swivel');
-    }
-
-    /**
-     * Publish swivel assets.
-     */
-    private function publishAssets() {
-        app()->make('config')->set('swivel', app()->getConfigurationPath('swivel'));
-        app()->configure('swivel');
-    }
-
-    /**
-     * @return void
-     */
-    public function register() {
-        $this->registerClass();
-    }
-
-    /**
-     * Register single service provider
-     *
-     * @return void
-     */
-    private function registerClass() {
-        $this->app->singleton('Swivel', function (Container $app) {
-            $request = app(\Illuminate\Http\Request::class);
-            return new SwivelComponent($request);
-        });
-
-        $this->app->alias('Swivel', SwivelComponent::class);
     }
 
     /**
@@ -87,7 +84,8 @@ class LaravelSwivelServiceProvider extends ServiceProvider {
      *
      * @return array
      */
-    public function provides() {
-        return ['Swivel'];
+    public function provides()
+    {
+        return ['swivel'];
     }
 }
