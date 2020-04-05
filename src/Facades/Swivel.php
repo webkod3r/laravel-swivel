@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelSwivel\Support\Facades;
+namespace LaravelSwivel\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
