@@ -4,9 +4,13 @@
     "description": "Laravel wrapper for swivel component",
     "keywords": [
         "laravel",
+        "lumen",
         "swivel",
-        "webkod3r",
-        "features"
+        "features",
+        "feature-flags",
+        "behavior",
+        "component",
+        "webkod3r"
     ],
     "homepage": "https://github.com/webkod3r/laravel-swivel",
     "license": "MIT",
@@ -22,8 +26,7 @@
         "illuminate/container": "~5.4",
         "illuminate/http": "~5.4",
         "illuminate/support": "~5.4",
-        "psr/log": "^1.0",
-        "zumba/swivel": "^2.1"
+        "zumba/swivel": "^2.1.5"
     },
     "require-dev": {
         "mockery/mockery": "^1.2",

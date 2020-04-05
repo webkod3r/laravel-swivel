@@ -7,14 +7,14 @@ use \Illuminate\Support\ServiceProvider;
 use \Illuminate\Foundation\Application as LaravelApplication;
 use \Laravel\Lumen\Application as LumenApplication;
 
-class LaravelSwivelServiceProvider extends ServiceProvider
+class SwivelServiceProvider extends ServiceProvider
 {
     /**
      * The package version.
      *
      * @var string
      */
-    const VERSION = '1.0.1';
+    const VERSION = '1.1.0';
 
     /**
      * Indicates if loading of the provider is deferred.
