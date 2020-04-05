@@ -27,6 +27,12 @@ Via Composer
 $ composer require webkod3r/laravel-swivel
 ```
 
+Rgister the new service provider in your application:
+
+```php
+$app->register(LaravelSwivel\SwivelServiceProvider::class);
+```
+
 After installing the package you can copy the default configuration and replace
 it with your own. In order to do that copy the file inside
 `vendor/webkod3r/laravel-swivel/config/swivel.php` into your onw project.
