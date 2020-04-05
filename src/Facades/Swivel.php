@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkod3r\LaravelSwivel\Support\Facades;
+namespace LaravelSwivel\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -13,6 +13,6 @@ class Swivel extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'Swivel';
+        return 'swivel';
     }
 }

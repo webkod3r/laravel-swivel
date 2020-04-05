@@ -1,18 +1,17 @@
 <?php
 
-namespace Webkod3r\LaravelSwivel;
+namespace LaravelSwivel;
 
 use Illuminate\Http\Request;
 
 /**
- * @package Webkod3r\LaravelSwivel
+ * @package LaravelSwivel
  * @author Pablo Molina <web.kod3r@gmail.com>
  */
 class SwivelComponent
 {
-
     /**
-     * @var \Webkod3r\LaravelSwivel\SwivelLoader
+     * @var \LaravelSwivel\SwivelLoader
      */
     protected $loader;
 
@@ -59,7 +58,7 @@ class SwivelComponent
     /**
      * Get the loader instance to access it easily
      *
-     * @return \Webkod3r\LaravelSwivel\SwivelLoader
+     * @return \LaravelSwivel\SwivelLoader
      */
     public function getLoader()
     {

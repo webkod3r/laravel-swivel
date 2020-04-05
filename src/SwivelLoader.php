@@ -1,8 +1,8 @@
 <?php
 
-namespace Webkod3r\LaravelSwivel;
+namespace LaravelSwivel;
 
-use Webkod3r\LaravelSwivel\Entity\SwivelFeature;
+use LaravelSwivel\Entity\SwivelFeature;
 
 /**
  * @package Webkod3r\LaravelSwivel
