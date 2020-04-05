@@ -19,9 +19,9 @@
     ],
     "require": {
         "php": "~5.6|~7.0.0",
-        "illuminate/container": "^5.4",
-        "illuminate/http": "^5.4",
-        "illuminate/support": "^5.4",
+        "illuminate/container": "~5.4",
+        "illuminate/http": "~5.4",
+        "illuminate/support": "~5.4",
         "psr/log": "^1.0",
         "zumba/swivel": "^2.1"
     },
