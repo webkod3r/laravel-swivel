@@ -22,21 +22,23 @@
         "illuminate/container": "~5.4.36",
         "illuminate/http": "~5.4.36",
         "illuminate/support": "~5.4.36",
+        "psr/log": "^1.0",
         "zumba/swivel": "^2.1"
     },
     "require-dev": {
         "mockery/mockery": "^1.2",
+        "orchestra/testbench": "~3.4.0",
         "phpunit/phpunit": "~5.0",
         "squizlabs/php_codesniffer": "^3.4"
     },
     "autoload": {
         "psr-4": {
-            "Webkod3r\\LaravelSwivel\\": "src"
+            "LaravelSwivel\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Webkod3r\\LaravelSwivel\\": "tests"
+            "Tests\\LaravelSwivel\\": "tests"
         }
     },
     "scripts": {
@@ -51,11 +53,12 @@
         },
         "laravel": {
             "providers": [
-                "Webkod3r\\LaravelSwivel\\LaravelSwivelServiceProvider"
+                "LaravelSwivel\\LaravelSwivelServiceProvider"
             ]
         }
     },
     "config": {
+        "optimize-autoloader": true,
         "sort-packages": true
     },
     "minimum-stability": "dev"

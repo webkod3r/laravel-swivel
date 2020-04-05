@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkod3r\LaravelSwivel\Entity;
+namespace LaravelSwivel\Entity;
 
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Model;
@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\Log;
 /**
  * Class SwivelFeature
  *
- * @package Webkod3r\LaravelSwivel\Entity
+ * @package LaravelSwivel\Entity
  * @property integer $id
  * @property string $slug
  * @property string $buckets
  * @property \DateTime $created_at
  * @property \DateTime $updated_at
  */
-class SwivelFeature extends Model implements SwivelModelInterface {
-
+class SwivelFeature extends Model implements SwivelModelInterface
+{
     /**
      * The table associated with the model.
      *
@@ -57,7 +57,8 @@ class SwivelFeature extends Model implements SwivelModelInterface {
      * ]
      * </pre>
      */
-    public function getMapData() {
+    public function getMapData()
+    {
         // load configuration settings
         $config = (array)$this->getContainer()->make('config')->get('swivel');
 
@@ -81,10 +82,11 @@ class SwivelFeature extends Model implements SwivelModelInterface {
     /**
      * Format data from database to the data swivel expects
      *
-     * @param array $feature
+     * @param array $feature Feature record with behavior and buckets
      * @return array
      */
-    protected function formatRow(array $feature) {
+    protected function formatRow(array $feature)
+    {
         if (!empty($feature['id'])) {
             return [$feature['slug'] => explode(static::DELIMITER, $feature['buckets'])];
         }

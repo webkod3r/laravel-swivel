@@ -1,8 +1,9 @@
 <?php
 
-namespace Webkod3r\LaravelSwivel\Entity;
+namespace LaravelSwivel\Entity;
 
-interface SwivelModelInterface {
+interface SwivelModelInterface
+{
     /**
      * Return an array of map data in the format that Swivel expects
      *
