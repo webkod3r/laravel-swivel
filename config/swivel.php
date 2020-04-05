@@ -21,7 +21,7 @@ return [
     | Defines the class used to load the swivel feature and handle the behavior
     |
     */
-    'loader_class' => env('SWIVEL_LOADER_CLASS', \Webkod3r\LaravelSwivel\SwivelLoader::class),
+    'loader_class' => env('SWIVEL_LOADER_CLASS', \LaravelSwivel\SwivelLoader::class),
 
     /*
     |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ return [
     | Defines the class used to load features from Database
     |
     */
-    'model_class' => env('SWIVEL_MODEL_CLASS', \Webkod3r\LaravelSwivel\Entity\SwivelFeature::class),
+    'model_class' => env('SWIVEL_MODEL_CLASS', \LaravelSwivel\Entity\SwivelFeature::class),
 
     /*
     |--------------------------------------------------------------------------
@@ -75,5 +75,5 @@ return [
     | Defines the cache configuration for key and duration
     */
     'cache_key' => 'swivel_features_cache_key',
-    'cache_duration' => 300, // 5 min
+    'cache_duration' => 5, // Laravel's Cache class uses the time in minutes
 ];

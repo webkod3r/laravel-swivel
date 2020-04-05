@@ -1,4 +1,4 @@
-# :package_name
+# Laravel Swivel
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -7,37 +7,43 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-**Note:** Replace ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```:vendor``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line. You can run `$ php prefill.php` in the command line to make all replacements at once. Delete the file prefill.php as well.
+[Zumba Swivel](https://github.com/zumba/swivel) is a library that allows PHP
+applications to manage features to multiple users via buckets. It consists
+with 10 buckets, allowing the same code have up to 10 different behaviors.
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+This package is a bridge between Laravel/Lumen and Swivel. It provides a Facade,
+and Entity classes to be used in your Laravel application.
 
 ## Structure
 
-If any of the following are applicable to your project, then the directory structure should follow industry best practises by being named the following.
-
-```
-bin/        
-config/
-src/
-tests/
-vendor/
-```
-
+If you want to make a contribution, please make sure you follow Laravel package
+structure.
 
 ## Install
 
 Via Composer
 
 ``` bash
-$ composer require :vendor/:package_name
+$ composer require webkod3r/laravel-swivel
 ```
+
+After installing the package you can copy the default configuration and replace
+it with your own. In order to do that copy the file inside
+`vendor/webkod3r/laravel-swivel/config/swivel.php` into your onw project.
 
 ## Usage
 
+Calling the app IoC and making your own instance
+
 ``` php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
+$swivel = app()->make('swivel');
+$swivel->returnValue('CoolFeature', 'Active', 'No Active');
+```
+
+or, using the shipped `Facade`
+
+``` php
+LaravelSwivel\Facades\Swivel::returnValue('CoolFeature', 'Active', 'No Active');
 ```
 
 ## Change log
@@ -56,28 +62,22 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT
 
 ## Security
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
-
-## Credits
-
-- [:author_name][link-author]
-- [All Contributors][link-contributors]
+If you discover any security related issues, please notify and open an issue.
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/:vendor/:package_name.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/webkod3r/laravel-swivel.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/:vendor/:package_name/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/:vendor/:package_name.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/:vendor/:package_name.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/:vendor/:package_name.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/webkod3r/laravel-swivel/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/webkod3r/laravel-swivel.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/webkod3r/laravel-swivel.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/webkod3r/laravel-swivel.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/:vendor/:package_name
-[link-travis]: https://travis-ci.org/:vendor/:package_name
-[link-scrutinizer]: https://scrutinizer-ci.com/g/:vendor/:package_name/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/:vendor/:package_name
-[link-downloads]: https://packagist.org/packages/:vendor/:package_name
-[link-author]: https://github.com/:author_username
-[link-contributors]: ../../contributors
+[link-packagist]: https://packagist.org/packages/webkod3r/laravel-swivel
+[link-travis]: https://travis-ci.org/webkod3r/laravel-swivel
+[link-scrutinizer]: https://scrutinizer-ci.com/g/webkod3r/laravel-swivel/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/webkod3r/laravel-swivel
+[link-downloads]: https://packagist.org/packages/webkod3r/laravel-swivel
+[link-author]: https://github.com/webkod3r
