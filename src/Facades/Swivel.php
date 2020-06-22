@@ -4,6 +4,12 @@ namespace LaravelSwivel\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @method static \LaravelSwivel\SwivelLoader getLoader()
+ * @method static \Zumba\Swivel\Builder forFeature()
+ * @method static mixed invoke()
+ * @method static mixed returnValue()
+ */
 class Swivel extends Facade
 {
     /**
