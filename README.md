@@ -49,7 +49,9 @@ $swivel->returnValue('CoolFeature', 'Active', 'No Active');
 or, using the shipped `Facade`
 
 ``` php
-LaravelSwivel\Facades\Swivel::returnValue('CoolFeature', 'Active', 'No Active');
+use LaravelSwivel\Facades\Swivel;
+
+Swivel::returnValue('CoolFeature', 'Active', 'No Active');
 ```
 
 ## Change log

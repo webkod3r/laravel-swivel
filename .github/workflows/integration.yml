@@ -13,6 +13,7 @@ jobs:
       matrix:
         operating-system: ['ubuntu-latest']
         php-versions: ['7.2', '7.3', '7.4']
+
     steps:
     - uses: actions/checkout@v3
     - name: Setup PHP
@@ -20,6 +21,8 @@ jobs:
       with:
         php-version: ${{ matrix.php-versions }}
         coverage: xdebug
+        tools: phpunit
+        extensions: simplexml, dom, xml, xdebug, intl
 
     - name: Install Dependencies
       run: |

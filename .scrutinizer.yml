@@ -1,0 +1,56 @@
+
+checks:
+    php:
+        code_rating: true
+        duplication: true
+
+build:
+    environment:
+        php: 7.2
+        redis: true
+    nodes:
+        coverage:
+            tests:
+                override:
+                    -
+                        command: ./vendor/bin/phpunit --coverage-clover=build/coverage/clover.xml
+                        coverage:
+                            file: 'build/coverage/clover.xml'
+                            format: 'php-clover'
+tools:
+    php_analyzer:
+        enabled: true
+        config:
+            checkstyle:
+                enabled: true
+                naming:
+                    isser_method_name: ^.*$
+                    utility_class_name: ^.*$
+            doc_comment_fixes:
+                enabled: false
+            reflection_fixes:
+                enabled: false
+            use_statement_fixes:
+                enabled: false
+            simplify_boolean_return:
+                enabled: true
+    external_code_coverage: false
+    php_code_coverage: false
+    php_changetracking: true
+    php_cpd: true
+    php_cs_fixer: false
+    php_mess_detector: true
+    php_pdepend: true
+    sensiolabs_security_checker: true
+
+filter:
+    paths:
+        - src/*
+
+coding_style:
+    php:
+        spaces:
+            before_parentheses:
+                closure_definition: true
+            around_operators:
+                concatenation: false
