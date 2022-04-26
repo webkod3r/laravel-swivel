@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelSwivel\Tests;
 
 use Illuminate\Contracts\Foundation\Application;

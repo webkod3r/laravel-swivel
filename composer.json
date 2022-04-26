@@ -9,8 +9,7 @@
         "features",
         "feature-flags",
         "behavior",
-        "component",
-        "webkod3r"
+        "component"
     ],
     "homepage": "https://github.com/webkod3r/laravel-swivel",
     "license": "MIT",
@@ -26,7 +25,7 @@
         "illuminate/container": "~5.4|^6.0",
         "illuminate/http": "~5.4|^6.0",
         "illuminate/support": "~5.4|^6.0",
-        "zumba/swivel": "^3.0"
+        "zumba/swivel": "^4.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.2",

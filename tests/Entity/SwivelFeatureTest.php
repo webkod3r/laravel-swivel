@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelSwivel\Tests\Entity;
 
-use Illuminate\Container\Container;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use LaravelSwivel\Entity\SwivelFeature;
 use LaravelSwivel\Tests\TestCase;

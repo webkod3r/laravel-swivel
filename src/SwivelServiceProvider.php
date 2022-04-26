@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelSwivel;
 
-use \Illuminate\Contracts\Container\Container;
-use \Illuminate\Support\ServiceProvider;
-use \Illuminate\Foundation\Application as LaravelApplication;
-use \Laravel\Lumen\Application as LumenApplication;
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Application as LaravelApplication;
+use Laravel\Lumen\Application as LumenApplication;
 
 class SwivelServiceProvider extends ServiceProvider
 {

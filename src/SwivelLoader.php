@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelSwivel;
 
 use LaravelSwivel\Entity\SwivelFeature;
@@ -10,7 +12,6 @@ use LaravelSwivel\Entity\SwivelFeature;
  */
 class SwivelLoader
 {
-
     /**
      * Swivel config
      *
@@ -77,11 +78,11 @@ class SwivelLoader
      * Get the configured swivel model.
      * Falls back to the SwivelFeature model provided by the plugin if the app does not define one.
      *
-     * @return \Webkod3r\LaravelSwivel\Entity\SwivelFeature
+     * @return SwivelFeature
      */
     protected function getModel()
     {
-        return new $this->options['ModelAlias'];
+        return new $this->options['ModelAlias']();
     }
 
     /**

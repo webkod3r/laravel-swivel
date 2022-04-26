@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelSwivel;
 
 use Illuminate\Http\Request;
@@ -46,8 +48,8 @@ class SwivelComponent
                 'expire' => (int)$config['cookie_expire'],
                 'path' => $config['cookie_path'],
                 'domain' => $config['cookie_domain'],
-                'secure' => (boolean)$config['cookie_secure'],
-                'httpOnly' => (boolean)$config['cookie_http_only'],
+                'secure' => (bool)$config['cookie_secure'],
+                'httpOnly' => (bool)$config['cookie_http_only'],
             ];
             $swivelOptions['Cookie'] = $cookie;
         }
