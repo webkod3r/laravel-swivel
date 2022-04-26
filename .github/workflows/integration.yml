@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         operating-system: ['ubuntu-latest']
-        php-versions: ['5.6', '7.2', '7.4']
+        php-versions: ['5.6', '7.0']
     steps:
     - uses: actions/checkout@v3
     - name: Setup PHP
@@ -20,11 +20,6 @@ jobs:
       with:
         php-version: ${{ matrix.php-versions }}
         coverage: xdebug
-
-    - name: Copy .env
-      run: |
-        php -r "file_exists('.env') || copy('.env.test.sample', '.env');"
-        php -r "file_exists('.env.test') || copy('.env.test.sample', '.env.test');"
 
     - name: Install Dependencies
       run: |

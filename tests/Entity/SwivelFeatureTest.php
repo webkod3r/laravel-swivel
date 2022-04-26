@@ -1,42 +1,48 @@
 <?php
 
-namespace Tests\Webkod3r\LaravelSwivel\Entity;
+namespace LaravelSwivel\Tests\Entity;
 
 use Illuminate\Container\Container;
-use Webkod3r\LaravelSwivel\Entity\SwivelFeature;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use LaravelSwivel\Entity\SwivelFeature;
+use LaravelSwivel\Tests\TestCase;
 
-class SwivelFeatureTest extends \PHPUnit_Framework_TestCase
+class SwivelFeatureTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * @var SwivelFeature
      */
     private $model;
 
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->model = new SwivelFeature();
-
-        Container::getInstance()->make('config')->set(['swivel.cache_key' => 'test-cache-key']);
-        //config(['swivel.cache_duration' => 2]);
-    }
-
+    /**
+     * Testing mapped features
+     *
+     * @return void
+     */
     public function testGetMapData()
     {
+        // insert swivel records
+        SwivelFeature::create([
+            'id' => 1,
+            'slug' => 'demo',
+            'buckets' => '1,2,3,4,5, 10',
+        ]);
+        SwivelFeature::create([
+            'id' => 1,
+            'slug' => 'demo.featureA',
+            'buckets' => '1,10',
+        ]);
+
         $expected = [
-            ['demo' => [1,2,3,4,5]],
+            'demo' => [1,2,3,4,5,10],
+            'demo.featureA' => [1,10],
         ];
 
-        $this->model = $this->getMockBuilder(SwivelFeature::class)
-            ->setMethods(['all'])
-            ->getMock();
+        $model = new SwivelFeature();
 
-        $this->model->expects($this->exactly(1))
-            ->method('all')
-            ->will($this->returnValue(new \DateTime()));
-
-        $result = $this->model->getMapData();
+        $result = $model->getMapData();
 
         $this->assertEquals($expected, $result);
     }
