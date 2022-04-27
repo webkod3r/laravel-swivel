@@ -19,10 +19,8 @@ class SwivelFeatureTest extends TestCase
 
     /**
      * Testing mapped features
-     *
-     * @return void
      */
-    public function testGetMapData()
+    public function testGetMapData(): void
     {
         // insert swivel records
         SwivelFeature::create([

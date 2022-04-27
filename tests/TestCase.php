@@ -13,7 +13,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->defineDatabaseMigrations();
@@ -23,11 +23,11 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
      * Define environment setup.
      *
      * @param  \Illuminate\Foundation\Application $app App instance.
-     * @return void
      */
-    protected function defineEnvironment(Application $app)
+    protected function defineEnvironment($app)
     {
         $app['config']->set('swivel.cache_key', 'test-cache-key');
+        $app['config']->set('swivel.cache_duration', 0);
 
         $app['config']->set('app.timezone', 'UTC');
         $app['config']->set('database.default', 'testing');
@@ -66,7 +66,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
      * @param $value    - new value of the property being modified
      * @return void
      */
-    protected function setProtectedProperty($object, $property, $value)
+    protected function setProtectedProperty($object, $property, $value): void
     {
         $reflection = new \ReflectionClass($object);
         $reflection_property = $reflection->getProperty($property);
@@ -83,7 +83,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
      *
      * @return mixed Method return.
      */
-    protected function invokeMethod(&$object, $methodName, array $parameters = [])
+    protected function invokeMethod(&$object, $methodName, array $parameters = []): mixed
     {
         $reflection = new \ReflectionClass(get_class($object));
         $method = $reflection->getMethod($methodName);
