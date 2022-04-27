@@ -2,8 +2,8 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
+[![Build Status][ico-scrutinizer-build]][link-build]
+[![Coverage Status][ico-scrutinizer-coverage]][link-scrutinizer-coverage]
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
@@ -78,14 +78,14 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 [ico-version]: https://img.shields.io/packagist/v/webkod3r/laravel-swivel.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/webkod3r/laravel-swivel/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/webkod3r/laravel-swivel.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/webkod3r/laravel-swivel.svg?style=flat-square
+[ico-scrutinizer-coverage]: https://scrutinizer-ci.com/g/webkod3r/laravel-swivel/badges/coverage.png?b=master
+[ico-scrutinizer-build]: https://scrutinizer-ci.com/g/webkod3r/laravel-swivel/badges/build.png?b=master
+[ico-code-quality]: https://scrutinizer-ci.com/g/webkod3r/laravel-swivel/badges/quality-score.png?b=master
 [ico-downloads]: https://img.shields.io/packagist/dt/webkod3r/laravel-swivel.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/webkod3r/laravel-swivel
-[link-travis]: https://travis-ci.org/webkod3r/laravel-swivel
-[link-scrutinizer]: https://scrutinizer-ci.com/g/webkod3r/laravel-swivel/code-structure
+[link-build]: https://scrutinizer-ci.com/g/webkod3r/laravel-swivel/badges/build.png?b=master
+[link-scrutinizer-coverage]: https://scrutinizer-ci.com/g/webkod3r/laravel-swivel/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/webkod3r/laravel-swivel
 [link-downloads]: https://packagist.org/packages/webkod3r/laravel-swivel
 [link-author]: https://github.com/webkod3r
