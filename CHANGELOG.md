@@ -22,6 +22,21 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Nothing
 
 
+
+## v2.0.0 (2022-04-25)
+
+### Added
+- Support for Laravel / Lumen ^6.0
+
+### Removed
+- Droppped support for PHP 5.6.
+- Dropped support for Laravel / Lumen ^5.x due to security issues.
+
+### Security
+- Dropped support for Laravel / Lumen ^5.x due to security issues with illuminate/database.
+
+
+
 ## v0.2.2 (2018-08-08)
 
 ### Added
@@ -32,6 +47,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Removed
 - Configuration file is no longer called `laravel-swivel.php` now is `swivel.php` 
+
 
 
 ## v0.1.0 (2017-10-10)

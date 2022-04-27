@@ -16,7 +16,7 @@ class SwivelServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    const VERSION = '1.1.0';
+    const VERSION = '2.0.0';
 
     /**
      * Indicates if loading of the provider is deferred.
