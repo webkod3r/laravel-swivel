@@ -21,7 +21,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.3",
         "illuminate/container": "^6.0|^7.0|^8.0",
         "illuminate/database": "^6.0|^7.0|^8.0",
         "illuminate/http": "^6.0|^7.0|^8.0",
@@ -68,5 +68,5 @@
             "kylekatarnls/update-helper": true
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
