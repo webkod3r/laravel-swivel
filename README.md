@@ -76,6 +76,11 @@ If you discover any security related issues, please notify and open an issue.
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
+## Dcoker usage
+```
+docker run --rm -it --volume $(pwd):/var/www/html/ php:7.4-fpm-alpine /bin/ash
+```
+
 [ico-version]: https://img.shields.io/packagist/v/webkod3r/laravel-swivel.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-scrutinizer-coverage]: https://scrutinizer-ci.com/g/webkod3r/laravel-swivel/badges/coverage.png?b=master
