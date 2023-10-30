@@ -29,7 +29,6 @@
         "zumba/swivel": "^4.0"
     },
     "require-dev": {
-        "mockery/mockery": "^1.2",
         "orchestra/database": "^4.0|^5.0|^6.0",
         "orchestra/testbench": "^4.0|^5.0|^6.0",
         "phpunit/phpunit": "^8.0",
