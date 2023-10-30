@@ -79,6 +79,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 ## Dcoker usage
 ```
 docker run --rm -it --volume $(pwd):/var/www/html/ php:7.4-fpm-alpine /bin/ash
+docker run --rm -it --volume $(pwd):/var/www/html/ php:8.0-fpm-alpine /bin/ash
 ```
 
 [ico-version]: https://img.shields.io/packagist/v/webkod3r/laravel-swivel.svg?style=flat-square
